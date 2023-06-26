@@ -23,7 +23,7 @@ public class InventoryServiceImpl implements InventoryService{
     public Mono<Inventory> saveInventory(InventoryDto inventoryDto) {
         Inventory inventory = InventoryMapper.mapToInventory(inventoryDto);
         Mono<Inventory> savedInventory = inventoryRepository.save(inventory);
-        return savedInventory.map(inventoryEntity -> InventoryMapper.mapToInventory(inventoryDto));
+        return inventoryRepository.save(inventory);
     }
 
     @Override
